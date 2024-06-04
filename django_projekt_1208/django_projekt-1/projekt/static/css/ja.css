@@ -1,0 +1,204 @@
+* {
+    padding: 0;
+    margin: 0;
+   font-family: 'inter';
+   font-weight: 900;
+  }
+  body{
+background-color:#E27526 !important ;
+
+
+  }
+  .pbutton {
+  
+    border: none !important;
+  }
+
+  .pbutton:focus,
+  .pbutton:active,
+  .pbutton:hover {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  .btn.btn-primary.btn-block.pbutton, .col-md-4{
+    background-color:#E27526 !important ;
+
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 25px;
+
+  }
+  .navbar-collapse {
+    
+    z-index: 999;
+  }
+  .navbar {
+
+    z-index: 9999;
+  }
+  img{
+    padding-right: 30px;
+    padding-left: 10px;
+  }
+.nav-item{
+  padding-left: 30px;
+  padding-right: 30px;
+padding-top: 17px;
+}
+
+  .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-custom {
+    background-color: #000000 !important; 
+    
+  }
+  .roza {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1094.4px;
+    height: 531.2px;
+    align-items: center;
+    background: #000000;
+    border-radius: 50px;
+    margin-top: 100px; 
+  }
+
+
+  .roza {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200.4px;
+    height: 531.2px;
+    align-items: center;
+    background: #000000;
+    border-radius: 50px;
+    margin-top: 100px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: -30px;
+  }
+  .bigwhite {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%; 
+    margin: 0 auto;
+    color: white;
+    gap: 250px;
+    padding-top: 30px;
+  }
+  
+  .bigwhite p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 30px;
+    
+    line-height: 54px;
+    text-shadow: 0px 4px 15px #000000;
+  }
+  
+  
+  
+
+ 
+ .grid-item {
+  margin: 20px;
+
+    padding: 15px;
+    background: #000000;
+border-radius: 50px;
+width: 320px;
+height: 220px;
+color: white;
+ }
+ .grid-item-h1{
+padding-left: 15px;
+  padding-bottom: 15px;
+ }
+ .grid-item-p{
+  padding-left: 15px;
+
+   }
+   .picture-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .additional-info {
+    text-align: left !important;
+  }
+ .info-TEXT {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 39px;
+    color: #ffffff;
+    padding-bottom: 0.8cm;
+  }
+  .ROZO{
+    color: #C21B67;
+    padding-left: 0.9cm;
+  }
+.square-container {
+  width: 180px;
+  height: 180px;
+  border: 5px solid #C21B67;
+  filter: drop-shadow(0px 4px 50px #C21B67);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square-container .image {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  margin-left: 22.5px;
+}
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #000;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #C21B67;
+}
+
+
+::-webkit-scrollbar-track {
+  background-color: #000;
+}
+
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.animated-navbar {
+  animation: fadeIn 1s ease-in-out;
+}
+.AnimacijaZaSliku{  animation: fadeIn 1.5s ease-in-out;}

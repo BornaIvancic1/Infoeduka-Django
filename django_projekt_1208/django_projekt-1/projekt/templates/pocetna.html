@@ -1,0 +1,195 @@
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pocetna.css' %}">
+
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    <title>pocetna</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-custom animated-navbar">
+    <img src="{% static 'pictures/FB_Algebra-logo.jpg' %}" alt="Logo" height="40" class="AnimacijaZaSliku">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'pocetna' %}">Početna</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kolegij' %}">Kolegiji i profesori</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'ja' %}">Ja</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4 col-sm-6">
+        <div class="bigwhite">
+          <button type="button" class="btn btn-primary btn-block pbutton" data-toggle="modal" data-target="#addObavijestModal">
+            <p>Nova obavijest</p>
+          </button>
+        </div>
+      </div>
+      
+      <div class="col-md-4 col-sm-6">
+        <div class="bigwhite">
+          <button onclick="toggleEditButtons()" type="button" class="btn btn-primary btn-block pbutton"><p>Uredi</p></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="modal fade" id="addObavijestModal">
+    <div class="modal-dialog modal-dialog-centered modal-bottom">
+      <div class="modal-content">
+        
+        <form id="obavijestForm" method="post" action="{% url 'create_obavijest' %}">
+          {% csrf_token %}
+          
+
+<div class="modal-body">
+  
+  <div class="Modal-Naslov d-flex flex-column justify-content-center align-items-center">
+    <div class="row">
+      <div class="col-4">
+        <div class="form-group">
+       
+
+          <input type="text" class="form-control" id="inputNaslov" name="inputNaslov">
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+ 
+          <select name="inputPredmet" id="inputPredmet">
+            {% for kolegij in kolegiji %}
+              <option value="{{ kolegij.kolegij_id }}">{{ kolegij.kolegij_naziv }}</option>
+            {% endfor %}
+          </select>
+
+          
+        </div>
+      </div>
+      
+    </div>
+    <div class="pad"></div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+  
+
+          <textarea class="form-control" id="inputObavijest" name="inputObavijest" rows="5"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>  
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary Odustani" data-dismiss="modal">Odustani</button>
+          <button type="submit" class="btn btn-primary Save">Spremi</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  
+  </div>
+  
+  
+  <div class="roza">
+    <div class="container">
+      <div class="row">
+        {% for obavijest in obavijesti %}
+          <div class="col-lg-4 col-md-6">
+            <div class="grid-item">
+              <h1 class="grid-item-h1">
+                {{ obavijest.title|default:"No obavijest available" }}
+                {% if obavijest.kolegij %}
+                  - {{ obavijest.kolegij.kolegij_naziv }}
+                {% endif %}
+              </h1>
+              <p class="grid-item-p">{{ obavijest.content|default:" " }}</p>
+              <button class="edit-button" onclick="editObavijest( obavijest.id )">Uredi</button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+  
+
+  
+  <script>
+
+    addObavijestForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const formData = new FormData(addObavijestForm);
+
+  fetch('/create_obavijest/', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    addObavijestModal.style.display = 'none';
+
+    
+  })
+  .catch(error => {
+
+    console.error(error);
+  });
+});
+
+  </script>
+  <script>
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const editButtons = document.querySelectorAll('.edit-button');
+      editButtons.forEach(button => {
+        button.style.display = 'none';
+      });
+    });
+
+
+    function toggleEditButtons() {
+
+      const editButtons = document.querySelectorAll('.edit-button');
+
+
+      const container = document.querySelector('.container');
+      container.classList.toggle('show-edit-buttons');
+
+
+      editButtons.forEach(button => {
+        button.style.display = button.style.display === 'none' ? 'block' : 'none';
+      });
+    }
+
+  </script>
+  
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
